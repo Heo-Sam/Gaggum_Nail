@@ -100,6 +100,7 @@
 	    	<input type="radio" name="slide" id="slide3">
 	    	<input type="radio" name="slide" id="slide4">
 	    	<ul id="imgholder" class="imgs">
+		        <li><img src="resources/main_images/main2.png"></li>
 		        <li><img src="resources/main_images/main.png"></li>
 		    </ul>
 		    <div class="bullets">
