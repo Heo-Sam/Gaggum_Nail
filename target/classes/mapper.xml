@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- mapper가 여러개 일때 namespace 로 구분한다. -->
+<mapper namespace="gaggum">
+	<!-- 로그인 -->
+	<select id="login" parameterType="com.ict.VO.MemberVO" resultType="com.ict.VO.MemberVO">
+		select * from members_nail where id=#{id} and pw=#{pw}
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="newMember" parameterType="com.ict.VO.MemberVO">
+		insert into members_nail 
+		values (membersNail_seq.nextval, #{name}, #{id}, #{pw}, #{phone}, #{email}, null, sysdate)
+	</insert>
+	
+	<!-- 회원리스트 -->
+	<select id="memberList" resultType="com.ict.VO.MemberVO">
+		select * from members_nail order by m_idx
+	</select>
+	
+	<!-- 회원삭제 -->
+	<delete id="deleteMember" parameterType="com.ict.VO.MemberVO">
+		delete from members_nail where id=#{id} and m_idx=#{m_idx}
+	</delete>
+	
+	<!-- 카운트 -->
+	<select id="count" resultType="int">
+		select count(*) from board_nail
+	</select>
+	
+	<!-- 시작번호와 끝 번호를 받아서 해당 리스트 출력 -->
+	<select id="boardList" parameterType="String" resultType="com.ict.VO.BoardVO">
+<!--
+		 select * from (
+			select rownum r_num, a.* from (
+				select * from board_nail order by f_idx desc
+			) a
+		) where rownum <![CDATA[ <= ]]> 4 
+-->
+		
+		select * from board_nail where category=#{category}
+		
+	</select>
+	
+	<!-- 서비스 사진 업로드 -->
+	<insert id="insert_service" parameterType="com.ict.VO.BoardVO">
+		insert into board_nail 
+		values (boardNail_seq.nextval, #{s_images}, #{category}, #{s_images}, #{content}, sysdate)
+	</insert>
+	
+	
+</mapper>
+
+
+
+
+
+
+
