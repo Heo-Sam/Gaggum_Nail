@@ -1,0 +1,45 @@
+create table members_nail(
+ m_idx number not null primary key,
+ name varchar2(50),
+ id varchar2(50) unique,
+ pw varchar2(50),
+ phone char(13),
+ email varchar2(50),
+ membership number,
+ regdate date
+);
+
+create table reserve(
+ r_idx number not null primary key,
+ name varchar2(50) not null,
+ phone char(13) not null,
+ reserve_date date not null,
+ reserve_time date,
+ item varchar2(50) not null,
+ remove varchar2(10) not null,
+ art  varchar2(10)
+);
+
+create table board_nail(
+ f_idx number not null primary key,
+ file_name varchar2(50) not null,
+ category varchar2(10) not null,
+ f_images varchar2(50) not null,
+ content varchar2(1000) not null,
+ upload_date date
+);
+
+create sequence membersNail_seq
+increment by 1
+start with 1;
+
+create sequence reserve_seq
+increment by 1
+start with 1;
+
+create sequence boardNail_seq
+increment by 1
+start with 1;
+
+insert into members_nail values (membersNail_seq.nextval, '������', 'admin', 'admin', '010-1111-1111', 'admin@gaggum.com', null, sysdate);
+insert into members_nail values (membersNail_seq.nextval, '���', 'semizz96', 'a1234', '010-2465-9592', 'semizz96@gamil.com', null, sysdate);
